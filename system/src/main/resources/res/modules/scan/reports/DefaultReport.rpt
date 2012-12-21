@@ -1,0 +1,19 @@
+<%
+// @file     DefaultReport.rpt
+// @author   Mac Radigan
+// @version  $Id$
+%>
+## DefaultReport
+
+      Report Id:  ${reportId}
+Class Report Id:  ${classReportId}
+           Date:  ${datetime}
+         Status:  ${status}
+
+## Long Format
+${recordset.toString()}
+
+## Short Format
+${recordset.toShortString()}
+
+## *EOF*

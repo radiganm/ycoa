@@ -1,0 +1,60 @@
+// @file     DiagnosticScanner.icr
+// @author   Mac Radigan
+// @version  $Id$
+
+package org.radigan.ycoa.scan.signin
+
+import org.apache.log4j.Logger
+import org.radigan.ycoa.process.service.Recordset
+
+public class DiagnosticScanner extends org.radigan.ycoa.scan.service.Scanner {
+  protected static log = Logger.getLogger(DiagnosticScanner.class.getName())
+  protected static String reportId = null
+  protected static String className = "DiagnosticScanner"
+
+  public DiagnosticScanner() {
+    super()
+    this.name = "Diagnostic"
+    this.priority = 100
+    this.enabled = true
+    this.consume = false
+  }
+
+  @Override public boolean canDecode(Recordset recordset) {
+    if(recordset[0]['ReportID']) {
+      log.info """        checking ReportID "${recordset[0]['ReportID']}" """
+    } else {
+      log.error """        checking ReportID "${recordset[0]['ReportID']}" - not defined """
+    }
+    return true
+  }
+
+  @Override public boolean isValid(Recordset recordset) {
+    return true
+  }
+
+  @Override public Recordset parse(Recordset recordset) {
+    return recordset
+  }
+
+  @Override public void process(Recordset recordset) { 
+    log.error """REPORT NOT PROCESSED (see diagnostics for details)"""
+    log.warn( System.getProperty("line.separator") 
+       + "o-=====================[ DIAGNOSTICS ]=====================-o" 
+       + System.getProperty("line.separator") 
+       + recordset.toShortString() 
+       + "o-=====================[     END     ]=====================-o"
+      )
+  }
+
+  @Override public void startup() {
+    log.info "diagnostic startup"
+  }
+
+  @Override public void shutdown() {
+    log.info "diagnostic shutdown"
+  }
+
+}
+
+/* *EOF* */

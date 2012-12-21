@@ -1,0 +1,80 @@
+// @file     BarcodeScanner.icr
+// @author   Mac Radigan
+// @version  $Id$
+
+package org.radigan.ycoa.scan.signin
+
+import org.apache.log4j.Logger
+import org.radigan.ycoa.process.service.Recordset
+
+public class BarcodeScanner extends org.radigan.ycoa.scan.service.Scanner {
+  protected static log = Logger.getLogger(BarcodeScanner.class.getName())
+  protected static String reportId = "YC-BC-0001"
+
+  public BarcodeScanner() {
+    super()
+    this.name = "barcode"
+    this.priority = 2
+    this.enabled = true
+  }
+
+  @Override public boolean canDecode(Recordset recordset) {
+    log.info """        ${getClass().getSimpleName()} checking ReportID "${recordset[0]['ReportID']}" against token "${reportId}" """
+    return recordset[0]['ReportID'] == reportId
+  }
+
+  @Override public boolean isValid(Recordset recordset) {
+    true
+  }
+
+  @Override public void process(Recordset recordset) { 
+    log.info System.getProperty("line.separator") + recordset.toShortString()
+  }
+
+  @Override public void report(Recordset recordset) { 
+    def datetime = getDate("yyyy-MMM-dd hh:mm aaa", "GMT")
+    def valid = isValid(recordset)
+    def status = valid ? "Succeeded" : "Failed"
+    def reportId = recordset[0]['ReportID']
+    def classReportId = recordset[0]['ClassReportID']
+    def reportParameters = [
+      'recordset':recordset,
+      'datetime':datetime,
+      'status':status,
+      'reportId':reportId,
+      'classReportId':classReportId
+    ]
+    def filename = new File("report.txt")
+    log.info "creating report:  ${filename}"
+    createReport(filename, new File("SigninReport.rpt"), reportParameters)
+  }
+
+  @Override File archive(File file, String md5, String collectionId, String uniqueId, Recordset recordset) { 
+    def extention = file.name.substring(file.name.indexOf(".")+1)
+    def filecode = null
+    switch(extention) {
+      case ["xml"]:
+        filecode = "Gravic"
+        break
+      case ["pdf","tif"]:
+        filecode = "Image"
+        break
+      case ["txt","rpt"]:
+        filecode = "Report"
+        break
+    }
+    def filename = "LostAndFound/${collectionId}/Lost_${uniqueId}_${filecode}.${extention}"
+    return new File(filename)
+  }
+
+  @Override public void startup() {
+    log.info "signin startup"
+  }
+
+  @Override public void shutdown() {
+    log.info "signin shutdown"
+  }
+
+}
+
+/* *EOF* */

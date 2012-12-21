@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>kh</Author>
+  <LastAuthor>mark</LastAuthor>
+  <Created>2006-06-16T23:43:17Z</Created>
+  <LastSaved>2006-06-29T21:51:05Z</LastSaved>
+  <Company>ycoa</Company>
+  <Version>11.6568</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <DownloadComponents/>
+  <LocationOfComponents HRef="file:///D:\"/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10470</WindowHeight>
+  <WindowWidth>17280</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>1485</WindowTopY>
+  <ActiveSheet>1</ActiveSheet>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s21">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s22">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s23">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s24">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Fields">
+  <Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="2" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="108"/>
+   <Column ss:Width="193.5"/>
+   <Row ss:StyleID="s21">
+    <Cell><Data ss:Type="String">Table</Data></Cell>
+    <Cell><Data ss:Type="String">Field</Data></Cell>
+    <Cell><Data ss:Type="String">Description</Data></Cell>
+    <Cell><Data ss:Type="String">Example</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Class</Data></Cell>
+    <Cell><Data ss:Type="String">clSpType</Data></Cell>
+    <Cell><Data ss:Type="String">type of sport</Data></Cell>
+    <Cell><Data ss:Type="String">karate, cheer, soccer, baton, hip hop, safe</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>2</ActiveRow>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Issues">
+  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="5" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:StyleID="s22" ss:AutoFitWidth="0" ss:Width="44.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="159.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="391.5"/>
+   <Row ss:StyleID="s23">
+    <Cell><Data ss:Type="String">Priority</Data></Cell>
+    <Cell ss:StyleID="s24"><Data ss:Type="String">Name</Data></Cell>
+    <Cell><Data ss:Type="String">Description</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">?</Data></Cell>
+    <Cell><Data ss:Type="String">Quotation Mark Issue</Data></Cell>
+    <Cell><Data ss:Type="String">Quotation marks in a template are replaced by question marks in a report.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Outline Template 2?</Data></Cell>
+    <Cell><Data ss:Type="String">Would like if we could modify the table structure on the outline template to be like </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">the font templates with an even number of options. (Parents &amp; friends cell extends across</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="3"><Data ss:Type="String">the whole table)</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>6</ActiveRow>
+     <ActiveCol>2</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Font Classes">
+  <Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="27" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:Width="154.5"/>
+   <Column ss:Width="24.75"/>
+   <Column ss:Width="158.25"/>
+   <Row>
+    <Cell ss:Index="2"><Data ss:Type="String">Stile</Data></Cell>
+    <Cell><Data ss:Type="String">Font type</Data></Cell>
+    <Cell><Data ss:Type="String">font Size</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAfySponsored</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAfyMasterTitle</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">48</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAfyDisclaimer</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclSpType</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclStartDate</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclWeeks</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAlcLocation</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAlcType</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAlcFacilityType1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAlcAddress</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAlcDirections</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup1Name</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup1RegistrationTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup1StartTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup1EndTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup2Name</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup2</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup2RegistrationTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup2StartTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup2EndTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup3Name</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed Extra Bold</Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup3</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup3RegistrationTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup3StartTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PYCOAclGroup3EndTime</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">Tw Cen MT Condensed </Data></Cell>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>15</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

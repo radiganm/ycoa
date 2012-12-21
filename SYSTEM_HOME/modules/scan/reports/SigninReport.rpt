@@ -1,0 +1,20 @@
+<%
+// @file     SigninReport.rpt
+// @author   Mac Radigan
+// @version  $Id$
+%>
+## SigninReport
+
+      Report Id:  ${reportId}
+Class Report Id:  ${classReportId}
+           Date:  ${datetime}
+       Template:  ${templateFile.getName()} [${templateFileMd5}]
+         Status:  ${status}
+
+## Long Format
+${recordset.toString()}
+
+## Short Format
+${recordset.toShortString()}
+
+## *EOF*

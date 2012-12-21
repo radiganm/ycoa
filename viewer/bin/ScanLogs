@@ -1,0 +1,5 @@
+#/bin/bash
+root=${0%/*}
+#bin=`pwd`/${root}
+bin=${root}
+(cd ${root}; ./ScanLogs.osa ${bin})

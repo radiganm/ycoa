@@ -1,0 +1,17 @@
+package org.radigan.ycoa.scan.daemon
+
+import org.radigan.ycoa.service.*
+import org.radigan.ycoa.process.service.System
+import org.apache.log4j.Logger
+import java.util.concurrent.ScheduledThreadPoolExecutor
+import java.util.concurrent.TimeUnit
+
+def serviceFactory = ServiceFactory.getInstance()
+def configuration = serviceFactory.getConfiguration()
+def log = serviceFactory.getLogger(this)
+
+def serialSystem = serviceFactory.getSerialSystem()
+//def executor = new ScheduledThreadPoolExecutor<org.radigan.ycoa.process.service.System>()
+def executor = new ScheduledThreadPoolExecutor(1)
+executor.scheduleWithFixedDelay(serialSystem, 0, 10, TimeUnit.SECONDS)
+java.lang.System.in.readLines()

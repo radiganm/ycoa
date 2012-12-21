@@ -1,0 +1,13 @@
+#!/bin/bash
+## @file     system
+## @author   Mac Radigan
+## @version  $Id$
+dir=${0%/*}
+file=${0##*/}
+jar=`find ${dir}/.. -name "system*.jar"`
+cmd="java -jar $jar"
+case "$file" in
+  system) $cmd $* ;;
+  *)      $cmd $file $* ;;
+esac
+## *EOF*

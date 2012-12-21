@@ -1,0 +1,66 @@
+// @file     ServletContainerTool.groovy
+// @author   Mac Radigan
+// @version  $Id: ServletContainerTool.groovy.DISABLED -1   $
+package org.radigan.system.servlet
+
+import org.radigan.system.tools.Tool
+
+import org.mortbay.jetty.*
+import org.mortbay.jetty.nio.*
+import org.mortbay.jetty.servlet.*
+import org.mortbay.jetty.deployer.*
+import groovy.servlet.*
+import org.mortbay.jetty.bio.SocketConnector
+
+public class ServletContainerTool extends Tool {
+
+  public String getName() {
+    return "webserver"
+  }
+
+  public String getDescription() {
+    return "Starts a web server."
+  }
+
+  public void initialize() {
+    cli.usage = "${getName()} <options> [-h]"
+    cli.with {
+        h longOpt: 'help',   'show usage information'
+        g longOpt: 'debug',  'turn debugging on'
+        d longOpt: 'directory', 'webapp directory',  args:1, argName:'directory', required:true
+        p longOpt: 'port',      'port number',       args:1, argName:'port',      required:false
+    }
+  }
+
+  public int run() {
+    def runServer = { port, webappdir ->
+      def server = new org.mortbay.jetty.Server()
+      //def server = new Server(8080)
+      //def server = Server.getConstructor(int.class).newInstance(port as int)
+
+      def connector = new SocketConnector()
+      connector.setPort(8080)
+      server.setConnectors([connector] as Connector[])
+
+      //def deployer = new WebAppDeployer()
+      //deployer.setContexts(server)
+      //deployer.setWebAppDir(webappdir)
+      //deployer.setExtract(true)
+      //deployer.setParentLoaderPriority(false)
+      //deployer.start()
+      def rootContext = new Context(server, "/", Context.SESSIONS)
+      rootContext.setResourceBase(".")
+      rootContext.addServlet(new ServletHolder(new TemplateServlet()), "*.html")
+      server.setStopAtShutdown(true)
+      server.start()
+      server.join() 
+    }
+    def port = 80
+    if(opt.p) port = Integer.parseInt(opt.p)
+    runServer(port, opt.d)
+    return 0
+  }
+
+}
+
+// *EOF*

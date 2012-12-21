@@ -1,0 +1,29 @@
+#!/usr/bin/osascript
+## ScanLogs.osa
+## Mac Radigan
+
+on run argv
+
+  launch "iTerm"
+  tell application "iTerm"
+    activate
+    set myterm to (make new terminal)
+    tell myterm
+      launch session "Scan Detail"
+      tell the last session to write text "" & item 1 of argv & "/ScanLogsDetail"
+      launch session "Scan Simple"
+      tell the last session to write text "" & item 1 of argv & "/ScanLogsAll"
+      launch session "Scan Logs"
+      set number of columns to 200
+      set number of rows to 18
+      tell the last session to write text "" & item 1 of argv & "/ScanLogsAll"
+      tell i term application "System Events" to keystroke "d" using {command down, shift down}
+      tell the last session to write text "" & item 1 of argv & "/ScanLogsSummary"
+      set number of columns to 200
+      set number of rows to 37
+      launch session "Scan Summary"
+      tell the last session to write text "" & item 1 of argv & "/ScanLogsSummary"
+    end tell
+  end tell
+
+end run

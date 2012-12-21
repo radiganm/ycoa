@@ -1,0 +1,24 @@
+// @file     build.gradle
+// @author   Mac Radigan
+// @version  $Id$
+
+description = "system"
+def passphrase = System.getenv(envpassphrase)
+
+task encrypt << {
+  protect.tokenize(",").each { file ->
+    def commandLine = "${gpg} --batch --yes --passphrase ${passphrase} --symmetric ${file}"
+    println commandLine
+    commandLine.execute()
+  }
+}
+
+task decrypt << {
+  protect.tokenize(",").each { file ->
+    def commandLine = "${gpg} --batch --yes --passphrase ${passphrase} --output ${file} ${file}.gpg"
+    println commandLine
+    commandLine.execute()
+  }
+}
+
+// *EOF*

@@ -1,0 +1,68 @@
+// @file     DefaultScanner.icr
+// @author   Mac Radigan
+// @version  $Id$
+
+package org.radigan.ycoa.scan.signin
+
+import org.apache.log4j.Logger
+import org.radigan.ycoa.process.service.Recordset
+import org.radigan.ycoa.process.service.FileCollection
+
+public class DefaultScanner extends org.radigan.ycoa.scan.service.Scanner {
+  protected static log = Logger.getLogger(DefaultScanner.class.getName())
+  protected static String reportId = null
+  protected static String className = "DefaultScanner"
+
+  public DefaultScanner() {
+    super()
+    this.name = "Default"
+    this.priority = 999
+    this.enabled = true
+    this.consume = true
+  }
+
+  @Override public boolean canDecode(Recordset recordset) {
+    return true
+  }
+
+  @Override public boolean isValid(Recordset recordset) {
+    return true
+  }
+
+  @Override public Recordset parse(Recordset recordset) {
+    return recordset
+  }
+
+  @Override public void process(Recordset recordset) { 
+    log.error """        no scanners were able to process this report - sending to lost & found"""
+  }
+
+  @Override File archive(File file, String md5, String collectionId, String uniqueId, Recordset recordset) { 
+    def extention = file.name.substring(file.name.indexOf(".")+1)
+    def filecode = null
+    switch(extention) {
+      case ["xml"]:
+        filecode = "Gravic"
+        break
+      case ["pdf","tif"]:
+        filecode = "Image"
+        break
+      case ["txt","rpt"]:
+        filecode = "Report"
+        break
+    }
+    def filename = "LostAndFound/${collectionId}/Lost_${uniqueId}_${filecode}.${extention}"
+    return new File(filename)
+  }
+
+  @Override public void startup() {
+    log.info "default startup"
+  }
+
+  @Override public void shutdown() {
+    log.info "default shutdown"
+  }
+
+}
+
+/* *EOF* */

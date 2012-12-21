@@ -1,0 +1,320 @@
+% ScanSystem
+\usepackage{graphicx,amssymb,amstext,amsmath,amsthm,caption,hyperref,mathtools}
+%\usepackage{draftwatermark}
+\usepackage{draftcopy}
+\usepackage[T1]{fontenc}
+\documentclass{report}
+\hypersetup{
+ colorlinks,%
+ citecolor=blue,%
+ filecolor=blue,%
+ linkcolor=blue,%
+ urlcolor=blue
+}
+\newcommand\Quote[1]{\lq\textsl{#1}\rq}
+\newcommand\fr[2]{{\textstyle\frac{#1}{#2}}}
+\begin{document}
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{.125in}
+\setlength{\textwidth}{6.25in}
+\begin{document}
+\title{Processing System\\Version 1.0 Beta}
+\author{YCOA}
+\renewcommand{\today}{Mac Radigan\\February 23, 2010\\Revision 0.3}
+\maketitle
+%-----------------------------------------------------------
+\begin{abstract}\centering
+This document describes the operation of the Processing System, with an emphasis on the YCOA Scan and Flyer Systems.
+\end{abstract}
+%-----------------------------------------------------------
+\tableofcontents
+
+%-----------------------------------------------------------
+\section{Concept Of Operations}
+
+%-----------------------------------------------------------
+\section{Algorithms}
+\subsection{Template Selection}
+\section{Metrics}
+%\subsubsection{Entropy $H_e\left(A\right)$}
+%Entropy, $H_e\left(A\right)$, is a measure of the of the information in a dataset with symbol alphabet $A$, measured in nats.  We may aslo specify the measure in bits, to quantify the Cram\'{e}r-Rao lower bound (CRLB) on the compression rate of the dataset.  Template selection is performed by applying the template results with the highest entropy.  Since the symbol alphabet is challenging to enumerate, and their probabilities extremely challenging to observe, an approximatation to the entropy can be produced by assigning a synthetic probability distribution to a given approximate alphabet.
+%\par
+%We may approximate the sybol alphabet with the set $A = \{[A-z0-9 \backslash-]\{1,9\}\}$.  To synthesize the probability distribution, partition the set $A$ into a typical set $A_\epsilon = \{[01]|TRUE|FALSE|ERROR\}$, and an atypical set $A_a = A \backslash A_\epsilon$.  By way of the Asymptotic Equipartition Property (AEP), a typical set would have order $\mid A_\epsilon \mid \le 2^{n H_e\left(A\right)+\epsilon}$ and probability $Pr\{A_\epsilon\} > 1-\epsilon$.  We violate the assumption and assign a typical probability of $Pr\{A_\epsilon\} = 0.8$.  To construct a synthetic probability distribution function, assume uniform probability of symbols within each partition.
+%\par
+%\par
+%\subsubsection{Uniformity $\sigma{_x}$}
+%\subsubsection{Greed}
+%-----------------------------------------------------------
+\section{Processor}
+\subsection{Installation}
+\subsection{Configuration}
+\subsubsection{Environment}
+  \begin{itemize}
+    \item \fontbf{SYSTEM\_HOME} - root directory of Processing System installation
+    \item \fontbf{COMPUTERNAME} - name of host machine
+  \end{itemize}
+\subsubsection{Configuration Files}
+  \begin{itemize}
+    \item \fontbf{config/system.conf} - core system settings
+    \item \fontbf{config/ycoa.conf} - market configuration settings
+    \item \fontbf{config/scan.conf} - scanner configuration settings
+    \item \fontbf{config/flyer.conf} - flyer configuration settings
+    \item \fontbf{config/logging.properties} - logging configuration file
+  \end{itemize}
+\subsection{Interfaces}
+\subsubsection{Command Line Inteface}
+To invoke:
+\begin{verbatim}
+  ./ext/system-shade-1.0.0-SNAPSHOT.jar <command>
+\end{verbatim}
+Command list:
+\begin{itemize}
+  \item \fontbf{script} - Runs the script interpreter
+  \begin{verbatim}
+    usage: script [options] -f <filename>
+      -f,--file     filename
+      -g,--debug    turn debugging on
+      -h,--help     show usage information
+  \end{verbatim}
+  \item \fontbf{webserver} - Starts a web server
+  \begin{verbatim}
+    usage: webserver [options]
+      -d,--directory <directory>   webapp directory
+      -g,--debug                   turn debugging on
+      -h,--help                    show usage information
+      -p,--port <port>             port number
+  \end{verbatim}
+  \item \fontbf{ftpserver} - Starts an FTP server
+  \begin{verbatim}
+    usage: ftpserver [options]
+      -d,--directory <directory>   FTP directory
+      -g,--debug                   turn debugging on
+      -h,--help                    show usage information
+      -p,--port <port>             port number
+  \end{verbatim}
+  \item \fontbf{gravic-parser} - Parsers Gravic XML files
+  \begin{verbatim}
+    usage: gravic [options] -f <filename>
+      -f,--file     filename
+      -g,--debug    turn debugging on
+      -h,--help     show usage information
+  \end{verbatim}
+  \item \fontbf{gravic} - Runs Gravic
+  \begin{verbatim}
+    usage: gravic [options] -f <filename> 
+      -f,--file <file>             file
+      -g,--debug                   turn debugging on
+      -h,--help                    show usage information
+      -o,--output <output>         output
+      -r,--reference <reference>   reference
+  \end{verbatim}
+  \item \fontbf{process} - Runs the processor
+  \begin{verbatim}
+    usage: process [options] 
+      -d,--daemon   daemon
+      -g,--debug    turn debugging on
+      -h,--help     show usage information
+      -s,--start    start
+  \end{verbatim}
+  \item \fontbf{flyer} - Runs Flyer Processor
+  \begin{verbatim}
+    usage: flyer [options]
+      -g,--debug    turn debugging on
+      -h,--help     show usage information
+  \end{verbatim}
+\end{itemize}
+\subsubsection{Running As A Windows Service}
+\subsubsection{OSGi Interface}
+\subsubsection{Processor Shell}
+\subsubsection{Scripting Interface}
+\subsubsection{Java API}
+%-----------------------------------------------------------
+\section{Modules}
+\subsection{Scan}
+\subsubsection{Scanners}
+  \begin{itemize}
+    \item \fontbf{modules/scan/scanners/SigninScanner.icr} - signin scanner
+    \item \fontbf{modules/scan/scanners/BarcodeScanner.icr} -  barcode scanner
+    \item \fontbf{modules/scan/scanners/DiagnoticScanner.icr} - scanner to assist with debugging and diagnostics
+    \item \fontbf{modules/scan/scanners/DefaultScanner.icr} - default scanner sends unprocessed images to Lost And Found
+  \end{itemize}
+\subsubsection{Templates}
+  \begin{itemize}
+    \item \fontbf{modules/scan/templates/barcodesheetn.omr} - 
+    \item \fontbf{modules/scan/templates/signin-1.omr} - 
+    \item \fontbf{modules/scan/templates/signin-1old.omr} - 
+    \item \fontbf{modules/scan/templates/signin-scaled1.omr} - 
+    \item \fontbf{modules/scan/templates/signin-scaled2.omr} - 
+  \end{itemize}
+\subsubsection{Reports}
+  \begin{itemize}
+    \item \fontbf{modules/scan/reports/SigninReport.rpt} - signin report template
+    \item \fontbf{modules/scan/reports/BarcodeReport.rpt} - barcode report template
+  \end{itemize}
+\subsection{Flyers}
+\subsubsection{Seeds}
+  \begin{itemize}
+    \item \fontbf{modules/flyer/xml/FlyerCover.wordml-seed.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOptions.wordml-seed.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOutline.wordml-seed.xml}
+    \item \fontbf{modules/flyer/xml/FlyerPanel.wordml-seed.xml}
+  \end{itemize}
+\subsubsection{Templates}
+  \begin{itemize}
+    \item \fontbf{modules/flyer/xml/FlyerColumn.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerCover.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerCover\_Spanish.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOptions.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOutline.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOutline.wordml-template2.xml}
+    \item \fontbf{modules/flyer/xml/FlyerOutline\_Spanish.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerPanel.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerPanel\_Spanish.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/FlyerSizing.excelml-meta.xml}
+    \item \fontbf{modules/flyer/xml/FlyerSizing.xml}
+    \item \fontbf{modules/flyer/xml/FlyerTest.wordml-template.xml}
+    \item \fontbf{modules/flyer/xml/Notes.excelml-meta.xml}
+    \item \fontbf{modules/flyer/xml/PostcardOptions.wordml-template.xml}
+  \end{itemize}
+\subsubsection{Formatters}
+  \begin{itemize}
+    \item \fontbf{modules/flyer/xml/FlyerFormat1.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat2.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat3.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat4.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat5.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat6.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat7.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat8.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat9.wordml-format.xml}
+    \item \fontbf{modules/flyer/xml/FlyerFormat10.wordml-format.xml}
+  \end{itemize}
+\subsubsection{Transforms}
+  \begin{itemize}
+    \item \fontbf{modules/flyer/xsl/dataset-to-flatdataset.xsl}
+    \item \fontbf{modules/flyer/xsl/dataset-to-reportdata.xsl}
+    \item \fontbf{modules/flyer/xsl/default-page.xsl}
+    \item \fontbf{modules/flyer/xsl/default-postcard-page.xsl}
+    \item \fontbf{modules/flyer/xsl/flyerlist.xsl}
+    \item \fontbf{modules/flyer/xsl/format-to-reportxsl.xsl}
+    \item \fontbf{modules/flyer/xsl/format-to-wordxsl.xsl}
+    \item \fontbf{modules/flyer/xsl/identity.xsl}
+    \item \fontbf{modules/flyer/xsl/interface.xsl}
+    \item \fontbf{modules/flyer/xsl/interface\_to\_html.xsl}
+    \item \fontbf{modules/flyer/xsl/login.xsl}
+    \item \fontbf{modules/flyer/xsl/nullify.xsl}
+    \item \fontbf{modules/flyer/xsl/pretty-print-xml.xsl}
+    \item \fontbf{modules/flyer/xsl/report-to-excelml.xsl}
+    \item \fontbf{modules/flyer/xsl/report-to-wordxsl.xsl}
+    \item \fontbf{modules/flyer/xsl/strip-root.xsl}
+    \item \fontbf{modules/flyer/xsl/xalan-extensions.xsl}
+  \end{itemize}
+%-----------------------------------------------------------
+\section{Log Viewer}
+\subsection{Trusted Client}
+\subsection{Broadcast Client}
+%-----------------------------------------------------------
+\section{Database Schema}
+\subsection{Tables}
+\subsubsection{File Location Table [yyFiles]}
+  \par
+  \textbf{yyFiles}
+  \\
+  \par
+  integer identity(1,1) \textbf{fiId} - primary key
+  \par
+  varchar(100) \textbf{fiHashcode} - MD5 cryptographic hashcode of file contents
+  \par
+  varchar(2000) \textbf{fiPath} - relative path to file from \textit{DATAOUT}/\textit{MARKET}
+  \par
+  integer \textbf{fiReprocessed} - number of times file was reprocessed
+  \par
+  varchar(10) \textbf{fiFormat} - image file format ('tif'|'pdf'|'xml'|'txt')
+  \par
+  varchar(20) \textbf{fiType} - type of file ('Image'|'Gravic'|'Report')
+  \par
+  varchar(20) \textbf{fiSystem} - name of system ('Signin'|'Barcode')
+  \par
+  integer \textbf{fiKey} - primary, system-dependent foreign key; Signin:[ClassReport].[cpId]
+  \par
+  integer \textbf{fiIndex} - secondary, system-dependent foreign key; Signin:[ClsStudent].[clId]
+  \par
+  bit \textbf{fiActive} - indicates record is available for query
+  \par
+  smalldatetime \textbf{fiLastModDate} - date record was last updated
+  \par
+  varchar(4) \textbf{fiLastModBy} - user which last updated record
+
+\subsection{Stored Procedures}
+
+\subsubsection{Updating Class Roster [yy\_scan\_UpdateClassRoster\_Diagnostics]}
+\par
+\begin{algorithmic}
+  \Function{yy\_scan\_UpdateClassRoster\_Diagnostics}{...}
+  \EndFunction
+\end{algorithmic}
+
+\subsubsection{Updating Class Roster [yy\_scan\_MakeupClassRoster]}
+\par
+\begin{algorithmic}
+  \Function{yy\_scan\_MakeupClassRoster}{...}
+  \EndFunction
+\end{algorithmic}
+
+\subsubsection{Adding File Locations [yy\_scan\_AddFile]}
+\par
+\begin{algorithmic}
+  \Function{yy\_scan\_AddFile}{...}
+  \EndFunction
+\end{algorithmic}
+
+\subsubsection{Retrieving File Locations [yy\_scan\_GetFile]}
+\par
+\begin{algorithmic}
+  \Function{yy\_scan\_GetFile}{varchar(20) Format, varchar(10) Type, varchar(20) System, integer Key, integer Index}
+  \EndFunction
+\end{algorithmic}
+  \par
+  \\
+  WHERE
+  \par
+  \textbf{Format} image file format ('Image'|'Gravic'|'Report')
+  \par
+  \textbf{Type} type of file ('tif'|'pdf'|'xml'|'txt')
+  \par
+  \textbf{System} name of system ('Signin'|'Barcode')
+  \par
+  \textbf{Key} primary, system-dependent foreign key; Signin:[ClassReport].[cpId]
+  \par
+  \textbf{Index} secondary, system-dependent foreign key; Signin:[ClsStudent].[clId]
+  \par
+  \\
+  RETURNS (XML AUTO)
+  \par
+  \textbf{Format} image file format ('Image'|'Gravic'|'Report')
+  \par
+  \textbf{fiType} type of file ('tif'|'pdf'|'xml'|'txt')
+  \par
+  \textbf{fiPath} relative path to file from \textit{DATAOUT}/\textit{MARKET}
+  \par
+  \textbf{fiReprocessed} the number of times the image has been reprocessed
+  \par
+  \\
+  NOTE
+  \par
+  Here \textit{DATAOUT} is the data output path specified in \textit{scan.conf}.
+  \par
+  Here \textit{MARKET} is the name of the current market, enuerated in \textit{scan.conf}.
+  \par
+  \\
+EXAMPLE:
+\begin{algorithmic}
+  \Function{yy\_scan\_GetFile}{@Format='Image', @Type='tif', @System='Signin', @Key=96153, @Index=172709}
+  \EndFunction{}
+\end{algorithmic}
+
+%-----------------------------------------------------------
+\appendix
+%-----------------------------------------------------------
+\end{document}

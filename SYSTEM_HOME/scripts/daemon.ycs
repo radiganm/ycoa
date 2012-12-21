@@ -1,0 +1,6 @@
+import org.radigan.ycoa.service.ServiceFactory
+
+def serviceFactory = ServiceFactory.getInstance()
+def daemon = serviceFactory.getDaemon()
+daemon.start()
+while(java.lang.System.in.readLines())

@@ -1,0 +1,198 @@
+// @file     SigninScanner.icr
+// @author   Mac Radigan
+// @version  $Id$
+
+package org.radigan.ycoa.scan.signin
+
+import org.apache.log4j.Logger
+import org.radigan.ycoa.process.service.Recordset
+
+public class SigninScanner extends org.radigan.ycoa.scan.service.Scanner {
+  protected static log = Logger.getLogger(SigninScanner.class.getName())
+  protected static String reportId = "Y[CU]-[YS5][I1]-[Q0O][Q0O][Q0O][2Z]"
+  protected static String className = "SigninScanner"
+  protected static String sysName = "Signin"
+
+  public SigninScanner() {
+    super()
+    this.name = "Signin"
+    this.priority = 1
+    this.enabled = true
+  }
+
+  @Override public boolean canDecode(Recordset recordset) {
+    log.info """        checking ReportID "${recordset[0]['ReportID']}" against token "${reportId}" """
+    return recordset[0]['ReportID'] =~ reportId
+  }
+
+  @Override public boolean isValid(Recordset recordset) {
+    def valid = true
+    try {
+      if(recordset[0]['ClassReportID'] != recordset[0]['crbarcode']) { 
+        valid = false
+      } else {
+        def invalidStudentIds = recordset.groupBy("([A-z]+)([0-9]+)", 1, 2).filter({r->return ((r["StudentID"]?.length()?:0)>=1) })
+        if(invalidStudentIds.size()) valid = false
+        recordset.groupBy("([A-z]+)([0-9]+)", 1, 2).each { record ->
+          try {
+            def integer = Integer.parseInt(record["StudentID"])
+          } catch(e) {
+            log.error """       unable to parse StudentId "${record['StudentID']}".  reason:  ${e.getMessage()} """
+            valid = false
+          }
+        }
+        valid = true
+      }
+    } catch(e) {
+      valid = false
+      log.error """       validation failed.  reason:  Dataset contains no records."""
+    }
+    return valid
+  }
+
+  @Override public Recordset parse(Recordset recordset) {
+    def resultRecordset = recordset.groupBy("([A-z]+)([0-9]+)", 1, 2).filter({r-> return ((r["StudentID"]?.length()?:0)<=1) })
+    resultRecordset.each { record ->
+      record["TotalMakeups"] = 0
+      if(Boolean.parseBoolean(record["MakeupsA"])) record["TotalMakeups"]++
+      if(Boolean.parseBoolean(record["MakeupsB"])) record["TotalMakeups"]++
+      if(Boolean.parseBoolean(record["MakeupsC"])) record["TotalMakeups"]++
+    }
+    if(recordset[0]['ClassReportID'] != recordset[0]['crbarcode']) {
+      log.error """        check ClassReportID "${recordset[0]['ClassReportID']}" does not match crbarcode "${recordset[0]['crbarcode']}" """
+    }
+    def invalidStudentIds = recordset.groupBy("([A-z]+)([0-9]+)", 1, 2).filter({r->return ((r["StudentID"]?.length()?:0)>=1) }) 
+    invalidStudentIds.each { record ->
+      log.error """        check StudentID value "${record['StudentID']}" is too short."""
+    }
+    return resultRecordset
+  }
+
+  private int toInteger(String boolString) { 
+    if(boolString =~ /(?i)[yt].*/) {
+      return 1
+    } else {
+      return 0
+    }
+  }
+
+  @Override public void process(Recordset recordset) { 
+    //log.trace System.getProperty("line.separator") + recordset.toShortString()
+    log.trace System.getProperty("line.separator") + recordset.toString()
+    recordset.each { record ->
+      def storedProcedure = "yy_scan_UpdateClassRoster_Diagnostics"
+      def parameters = [
+        'ClassReportID' :record['ClassReportID'],
+        'StudentID'     :record['StudentID'],
+        'Signature'     :1,
+        'Payment'       :1,
+        'Present'       :toInteger(record['Present']),
+        'Makeups'       :record['TotalMakeups'],
+        'Evaluation'    :toInteger(record['Evaluation']),
+        'Specialty'     :toInteger(record['Specialty'])
+      ]
+      log.debug "contacting ${toUrl(storedProcedure, parameters)}"
+      def result = execute(storedProcedure, parameters)
+      log.debug "\n${result.toString()}"
+      //log.debug format(result)
+      def newFields = [:]
+      if(result.size()) {
+        result[0].each { field, value ->
+	  if(field.endsWith("Done")) {
+	    newFields["LastUpdated"] = value
+	  } else if(field.startsWith("crWk")) {
+	    newFields["RosterCode"] = value
+	  }
+        }
+        record.putAll(newFields)
+      }
+    }
+    //log.trace "\n${recordset.toString()}"
+  }
+
+  @Override public void report(Recordset recordset) { 
+    def datetime = getDate("yyyy-MMM-dd hh:mm aaa", "GMT")
+    def valid = isValid(recordset)
+    def status = valid ? "Succeeded" : "Failed"
+    def reportId = recordset[0]['ReportID']
+    def classReportId = recordset[0]['ClassReportID']
+    def reportParameters = [
+      'recordset':recordset,
+      'datetime':datetime,
+      'templateFile':templateFile,
+      'templateFileMd5':md5sum(templateFile.text),
+      'status':status,
+      'reportId':reportId,
+      'classReportId':classReportId
+    ]
+    def filename = new File("report.txt")
+    def reportFile = createReport(filename, new File("SigninReport.rpt"), reportParameters)
+    log.warn "${reportFile.text}"
+  }
+
+  protected void linkFile(File file, String md5, String fileFormat, String filecode, Recordset recordset) {
+    def storedProcedure = "yy_scan_AddFile"
+    def relativePath = file.toString().substring((int)archiveDirectory.length())
+    //recordset.groupBy("([A-z]+)([0-9]+)", 1, 2).each { record ->
+    recordset.each { record ->
+      def parameters = [
+        'Hashcode'      :md5,
+        'Path'          :relativePath,
+        'Format'        :fileFormat,
+        'Type'          :filecode,
+        'System'        :sysName,
+        'Key'           :record['ClassReportID'],
+        'Index'         :record['StudentID'],
+        'LastModBy'     :'SKAN'
+      ]
+      log.debug "contacting ${toUrl(storedProcedure, parameters)}"
+      def result = null
+      switch(fileFormat) {
+        case ["txt","rpt","xml"]:
+        case ["pdf","tif"]:
+          result = execute(storedProcedure, parameters)
+          log.trace "\n${result.toString()}"
+          break
+        default:
+          log.trace "unknown file format: ${fileFormat}"
+          break
+      }
+    }
+  }
+
+  @Override File archive(File file, String md5, String collectionId, String uniqueId, Recordset recordset) { 
+    def extension = file.name.substring(file.name.indexOf(".")+1)
+    def filecode = null
+    switch(extension) {
+      case ["xml"]:
+        filecode = "Gravic"
+        break
+      case ["pdf","tif"]:
+        filecode = "Image"
+        break
+      case ["txt","rpt"]:
+        filecode = "Report"
+        break
+    }
+    def valid = isValid(recordset)
+    def status = valid ? "Succeeded" : "Failed"
+    def reportType = "SignIn"
+    def reportName = valid ? "${reportType}_${recordset[0]['ClassReportID']}" : "SIGNIN"
+    def filename = "${reportType}/${status}/${reportName}/${collectionId}/${reportName}_${uniqueId}_${filecode}.${extension}"
+    def newFile = new File(filename)
+    linkFile(newFile, md5, extension, filecode, recordset)
+    return newFile
+  }
+
+
+  @Override public void startup() {
+    log.info "signin startup"
+  }
+
+  @Override public void shutdown() {
+    log.info "signin shutdown"
+  }
+
+}
+
+/* *EOF* */

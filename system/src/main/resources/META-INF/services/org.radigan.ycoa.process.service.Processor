@@ -1,0 +1,6 @@
+## Service Provider List for org.radigan.ycoa.process.service.Processor
+## Mac Radigan
+## version:  $Id$
+org.radigan.ycoa.scan.impl.ScanProcessorImpl
+org.radigan.ycoa.flyer.impl.FlyerProcessorImpl
+#org.radigan.ycoa.scan.impl.DefaultProcessorImpl

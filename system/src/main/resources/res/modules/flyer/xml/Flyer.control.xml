@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Flyer.control.xml -->
+<!-- 
+     Control file for the RPFP module.
+ -->
+
+<control>
+  <format-select>
+
+    <!-- 1 SPORT FLYER -->
+    <group sport-count="1">
+      <format file="FlyerFormat1.wordml-format.xml"  column-min="1" column-max="1"/>
+      <format file="FlyerFormat2.wordml-format.xml"  column-min="2" column-max="2"/>
+      <format file="FlyerFormat3.wordml-format.xml"  column-min="3" column-max="3"/>
+      <format file="FlyerFormat4.wordml-format.xml"  column-min="4" column-max="4"/>
+      <format file="FlyerFormat5.wordml-format.xml"  column-min="5" column-max="5"/>
+      <format file="FlyerFormat6.wordml-format.xml"  column-min="6" column-max="6"/>
+      <format file="FlyerFormat7.wordml-format.xml"  column-min="7" column-max="7"/>
+      <format file="FlyerFormat8.wordml-format.xml"  column-min="8" column-max="8"/>
+      <format file="FlyerFormat9.wordml-format.xml"  column-min="9" column-max="9"/>
+      <format file="FlyerFormat10.wordml-format.xml" column-min="10" column-max="10"/>
+    </group>
+
+    <!-- 2 SPORT FLYER -->
+    <group sport-count="2">
+      <format file="FlyerFormat1.wordml-format.xml"  column-min="1" column-max="1"/>
+      <format file="FlyerFormat2.wordml-format.xml"  column-min="2" column-max="2"/>
+      <format file="FlyerFormat3.wordml-format.xml"  column-min="3" column-max="3"/>
+      <format file="FlyerFormat4.wordml-format.xml"  column-min="4" column-max="4"/>
+      <format file="FlyerFormat5.wordml-format.xml"  column-min="5" column-max="5"/>
+      <format file="FlyerFormat6.wordml-format.xml"  column-min="6" column-max="6"/>
+      <format file="FlyerFormat7.wordml-format.xml"  column-min="7" column-max="7"/>
+      <format file="FlyerFormat8.wordml-format.xml"  column-min="8" column-max="8"/>
+      <format file="FlyerFormat9.wordml-format.xml"  column-min="9" column-max="9"/>
+      <format file="FlyerFormat10.wordml-format.xml" column-min="10" column-max="10"/>
+    </group>
+
+    <!-- 3 SPORT FLYER -->
+    <group sport-count="3">
+      <format file="FlyerFormat1.wordml-format.xml"  column-min="1" column-max="1"/>
+      <format file="FlyerFormat2.wordml-format.xml"  column-min="2" column-max="2"/>
+      <format file="FlyerFormat3.wordml-format.xml"  column-min="3" column-max="3"/>
+      <format file="FlyerFormat4.wordml-format.xml"  column-min="4" column-max="4"/>
+      <format file="FlyerFormat5.wordml-format.xml"  column-min="5" column-max="5"/>
+      <format file="FlyerFormat6.wordml-format.xml"  column-min="6" column-max="6"/>
+      <format file="FlyerFormat7.wordml-format.xml"  column-min="7" column-max="7"/>
+      <format file="FlyerFormat8.wordml-format.xml"  column-min="8" column-max="8"/>
+      <format file="FlyerFormat9.wordml-format.xml"  column-min="9" column-max="9"/>
+      <format file="FlyerFormat10.wordml-format.xml" column-min="10" column-max="10"/>
+    </group>
+
+    <!-- 4 SPORT FLYER -->
+    <group sport-count="4">
+      <format file="FlyerFormat1.wordml-format.xml"  column-min="1" column-max="1"/>
+      <format file="FlyerFormat2.wordml-format.xml"  column-min="2" column-max="2"/>
+      <format file="FlyerFormat3.wordml-format.xml"  column-min="3" column-max="3"/>
+      <format file="FlyerFormat4.wordml-format.xml"  column-min="4" column-max="4"/>
+      <format file="FlyerFormat5.wordml-format.xml"  column-min="5" column-max="5"/>
+      <format file="FlyerFormat6.wordml-format.xml"  column-min="6" column-max="6"/>
+      <format file="FlyerFormat7.wordml-format.xml"  column-min="7" column-max="7"/>
+      <format file="FlyerFormat8.wordml-format.xml"  column-min="8" column-max="8"/>
+      <format file="FlyerFormat9.wordml-format.xml"  column-min="9" column-max="9"/>
+      <format file="FlyerFormat10.wordml-format.xml" column-min="10" column-max="10"/>
+    </group>
+
+  </format-select>
+</control>
+
+<!-- *EOF* -->

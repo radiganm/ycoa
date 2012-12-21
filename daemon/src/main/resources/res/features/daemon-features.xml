@@ -1,0 +1,8 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+  <feature name="daemon" version="1.0.0">
+    <!-- dependencies -->
+    <bundle>mvn:org.radigan/system/1.0.0-SNAPSHOT</bundle>
+    <!-- custom -->
+    <bundle>mvn:org.radigan/daemon/1.0.0-SNAPSHOT</bundle>
+  </feature>
+</features>

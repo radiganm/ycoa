@@ -1,0 +1,63 @@
+// @file     FtpServerTool.groovy
+// @author   Mac Radigan
+// @version  $Id: FtpServerTool.groovy.DISABLED -1   $
+package org.radigan.system.ftp
+
+import org.radigan.system.tools.Tool
+
+import org.apache.ftpserver.FtpServerFactory
+import org.apache.ftpserver.listener.ListenerFactory
+import org.apache.ftpserver.FtpServer
+import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory
+import org.apache.ftpserver.ftplet.UserManager
+import org.apache.ftpserver.usermanager.ClearTextPasswordEncryptor
+//import org.apache.ftpserver.usermanager.BaseUser
+import org.apache.ftpserver.usermanager.impl.BaseUser
+
+public class FtpServerTool extends Tool {
+
+  public String getName() {
+    return "ftpserver"
+  }
+
+  public String getDescription() {
+    return "Starts an ftp server."
+  }
+
+  public void initialize() {
+    cli.usage = "${getName()} <options> [-h]"
+    cli.with {
+        h longOpt: 'help',   'show usage information'
+        g longOpt: 'debug',  'turn debugging on'
+        p longOpt: 'port',      'port number',       args:1, argName:'port',      required:false
+        d longOpt: 'directory', 'webapp directory',  args:1, argName:'directory', required:true
+    }
+  }
+
+  public int run() {
+   def directory = "."
+   if(opt.d) directory = opt.d
+   def port = 21
+   if(opt.p) port = Integer.parseInt(opt.p)
+   def serverFactory = new FtpServerFactory()
+   def factory = new ListenerFactory()
+   factory.setPort(port)
+   serverFactory.addListener("default", factory.createListener())
+   def server = serverFactory.createServer()
+   def userManagerFactory = new PropertiesUserManagerFactory()
+   userManagerFactory.setFile(new File("users.properties"))
+   userManagerFactory.setPasswordEncryptor(new ClearTextPasswordEncryptor())
+   def um = userManagerFactory.createUserManager()
+   def user = new BaseUser()
+   user.setName("admin")
+   user.setPassword("admin")
+   user.setHomeDirectory(directory)
+   um.save(user)
+   server.start()
+   java.lang.System.in.readLines()
+   return 0
+  }
+
+}
+
+// *EOF*
